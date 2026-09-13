@@ -1,0 +1,22 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.vscode/
+logs/
+*.log
+data/proposals/
+.DS_Store
+Thumbs.db
+/Pipfile
+
+# Local ZIP packages / generated archives
+*.zip
+
+# Pipenv lock file (using requirements.txt for this project)
+Pipfile.lock
+
+# Internal project documentation
+docs/
+README_PHASE1.md
