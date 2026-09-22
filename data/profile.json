@@ -1,0 +1,60 @@
+{
+  "professional_summary": "",
+
+  "skills": [
+    {
+      "name": "",
+      "category": "",
+      "proficiency": "",
+      "years": null
+    }
+  ],
+
+  "experience": [
+    {
+      "role": "",
+      "company": "",
+      "period": "",
+      "description": "",
+      "technologies": []
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "",
+      "description": "",
+      "role": "",
+      "technologies": [],
+      "url": ""
+    }
+  ],
+
+  "portfolio": [
+    {
+      "name": "",
+      "description": "",
+      "url": "",
+      "technologies": [],
+      "categories": []
+    }
+  ],
+
+  "education": [
+    {
+      "degree": "",
+      "field": "",
+      "institution": "",
+      "year": ""
+    }
+  ],
+
+  "certifications": [
+    {
+      "name": "",
+      "issuer": "",
+      "year": "",
+      "url": ""
+    }
+  ]
+}
