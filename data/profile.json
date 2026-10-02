@@ -1,60 +1,234 @@
 {
-  "professional_summary": "",
-
-  "skills": [
-    {
-      "name": "",
-      "category": "",
-      "proficiency": "",
-      "years": null
-    }
-  ],
-
-  "experience": [
-    {
-      "role": "",
-      "company": "",
-      "period": "",
-      "description": "",
-      "technologies": []
-    }
-  ],
-
-  "projects": [
-    {
-      "name": "",
-      "description": "",
-      "role": "",
-      "technologies": [],
-      "url": ""
-    }
-  ],
-
-  "portfolio": [
-    {
-      "name": "",
-      "description": "",
-      "url": "",
-      "technologies": [],
-      "categories": []
-    }
-  ],
-
-  "education": [
-    {
-      "degree": "",
-      "field": "",
-      "institution": "",
-      "year": ""
-    }
-  ],
-
-  "certifications": [
-    {
-      "name": "",
-      "issuer": "",
-      "year": "",
-      "url": ""
-    }
-  ]
+    "professional_summary": "Software developer and IT professional with extensive experience across web development, enterprise IT solutions, network administration, cloud infrastructure, and technical training. Experienced with PHP and Python-based web development, Django, Laravel, WordPress, AWS cloud services, VPS environments, and team leadership. Interested in combining software engineering, cloud infrastructure, automation, and AI-assisted development.",
+    "skills": [
+        {
+            "name": "Python",
+            "category": "Programming",
+            "proficiency": "Advanced",
+            "years": 10
+        },
+        {
+            "name": "PHP",
+            "category": "Programming",
+            "proficiency": "Advanced",
+            "years": 15
+        },
+        {
+            "name": "Django",
+            "category": "Web Development",
+            "proficiency": "Advanced",
+            "years": 8
+        },
+        {
+            "name": "Laravel",
+            "category": "Web Development",
+            "proficiency": "Intermediate",
+            "years": 5
+        },
+        {
+            "name": "WordPress",
+            "category": "Web Development",
+            "proficiency": "Advanced",
+            "years": 10
+        },
+        {
+            "name": "Flutter",
+            "category": "Application Development",
+            "proficiency": "Intermediate",
+            "years": 3
+        },
+        {
+            "name": "AWS",
+            "category": "Cloud",
+            "proficiency": "Intermediate",
+            "years": 5
+        },
+        {
+            "name": "Oracle Cloud",
+            "category": "Cloud",
+            "proficiency": "Intermediate",
+            "years": 3
+        },
+        {
+            "name": "Linux",
+            "category": "Systems",
+            "proficiency": "Advanced",
+            "years": 15
+        },
+        {
+            "name": "Network Administration",
+            "category": "Infrastructure",
+            "proficiency": "Advanced",
+            "years": 15
+        },
+        {
+            "name": "Cloud Infrastructure",
+            "category": "Cloud",
+            "proficiency": "Intermediate",
+            "years": 5
+        },
+        {
+            "name": "Enterprise IT Solutions",
+            "category": "IT Infrastructure",
+            "proficiency": "Advanced",
+            "years": 15
+        },
+        {
+            "name": "Technical Training",
+            "category": "Training",
+            "proficiency": "Advanced",
+            "years": 20
+        },
+        {
+            "name": "Team Leadership",
+            "category": "Management",
+            "proficiency": "Advanced",
+            "years": 10
+        }
+    ],
+    "experience": [
+        {
+            "role": "Software Developer / IT Professional",
+            "company": "",
+            "period": "",
+            "description": "Software development and IT work covering web applications, enterprise IT solutions, cloud infrastructure, and development operations.",
+            "technologies": [
+                "Python",
+                "Django",
+                "PHP",
+                "Laravel",
+                "WordPress",
+                "AWS"
+            ]
+        },
+        {
+            "role": "Remote Web Developer / Team Lead",
+            "company": "",
+            "period": "",
+            "description": "Remote web development and team leadership work involving web applications and client-oriented development.",
+            "technologies": [
+                "PHP",
+                "Python",
+                "Django",
+                "WordPress"
+            ]
+        },
+        {
+            "role": "IT / Network Administrator",
+            "company": "",
+            "period": "",
+            "description": "Experience in network administration, ISP network solutions, enterprise IT infrastructure, and systems administration.",
+            "technologies": [
+                "Linux",
+                "Networking",
+                "Enterprise IT"
+            ]
+        },
+        {
+            "role": "IT Trainer",
+            "company": "",
+            "period": "",
+            "description": "Technical training experience ranging from Microsoft Office applications through programming languages.",
+            "technologies": [
+                "Microsoft Office",
+                "Programming Languages"
+            ]
+        },
+        {
+            "role": "Project / Team Lead",
+            "company": "",
+            "period": "2014-2016",
+            "description": "Led a data digitization project involving a team of approximately 30 people.",
+            "technologies": []
+        }
+    ],
+    "projects": [
+        {
+            "name": "AI-Assisted Django E-commerce Application",
+            "description": "Developed an e-commerce application using Django with extensive AI-assisted development. The project was also used to evaluate the reliability, completeness, and validation requirements of AI-generated software.",
+            "role": "Developer",
+            "technologies": [
+                "Python",
+                "Django",
+                "E-commerce",
+                "AI-assisted development"
+            ],
+            "url": ""
+        },
+        {
+            "name": "AWS Cloud Infrastructure Demonstration",
+            "description": "Worked with AWS infrastructure components including EC2, RDS/Aurora, S3, Elastic Load Balancing, Route 53, and CloudFront as part of cloud infrastructure and migration-related work.",
+            "role": "Cloud / IT Professional",
+            "technologies": [
+                "AWS EC2",
+                "AWS RDS",
+                "AWS Aurora",
+                "AWS S3",
+                "AWS ELB",
+                "AWS Route 53",
+                "AWS CloudFront"
+            ],
+            "url": ""
+        },
+        {
+            "name": "PHP / WordPress Web Projects",
+            "description": "Built and maintained PHP and WordPress websites and web applications for client and development work.",
+            "role": "Web Developer",
+            "technologies": [
+                "PHP",
+                "WordPress"
+            ],
+            "url": ""
+        }
+    ],
+    "portfolio": [
+        {
+            "name": "Django / Python Web Applications",
+            "description": "Python and Django web development projects.",
+            "url": "",
+            "technologies": [
+                "Python",
+                "Django"
+            ],
+            "categories": [
+                "Python",
+                "Django",
+                "Web Development"
+            ]
+        },
+        {
+            "name": "PHP Web Applications",
+            "description": "PHP-based web development projects.",
+            "url": "",
+            "technologies": [
+                "PHP"
+            ],
+            "categories": [
+                "PHP",
+                "Web Development"
+            ]
+        },
+        {
+            "name": "WordPress Websites",
+            "description": "WordPress website development and customization projects.",
+            "url": "",
+            "technologies": [
+                "WordPress",
+                "PHP"
+            ],
+            "categories": [
+                "WordPress",
+                "Web Development"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "degree": "Bachelor of Science",
+            "field": "Computer Science",
+            "institution": "",
+            "year": "1998"
+        }
+    ],
+    "certifications": []
 }
