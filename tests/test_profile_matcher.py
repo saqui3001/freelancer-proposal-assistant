@@ -8,7 +8,8 @@ job = JobPost(
     title="Senior Python Django Developer for E-commerce Platform",
     description=(
         "We need an experienced developer to improve our Django "
-        "e-commerce application using Python, PostgreSQL and AWS."
+        "e-commerce application using Python, PostgreSQL and AWS. "
+        "Docker experience is preferred."
     ),
     skills=[
         "Python",

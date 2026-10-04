@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
 from app.jobs.models import JobPost
+from app.requirements.requirement_extractor import extract_requirements
 
 
 @dataclass
@@ -49,9 +50,7 @@ def find_requirement_evidence(
 
     normalized_requirement = normalize(requirement)
 
-    # ---------------------------------------------------------
     # 1. Skills
-    # ---------------------------------------------------------
     for skill in profile.get("skills", []):
         skill_name = skill.get("name", "")
 
@@ -66,9 +65,7 @@ def find_requirement_evidence(
                 evidence=skill,
             )
 
-    # ---------------------------------------------------------
     # 2. Experience
-    # ---------------------------------------------------------
     for experience in profile.get("experience", []):
         searchable_values = [
             experience.get("role", ""),
@@ -87,9 +84,7 @@ def find_requirement_evidence(
                 evidence=experience,
             )
 
-    # ---------------------------------------------------------
     # 3. Projects
-    # ---------------------------------------------------------
     for project in profile.get("projects", []):
         searchable_values = [
             project.get("name", ""),
@@ -109,9 +104,7 @@ def find_requirement_evidence(
                 evidence=project,
             )
 
-    # ---------------------------------------------------------
     # 4. Portfolio
-    # ---------------------------------------------------------
     for item in profile.get("portfolio", []):
         searchable_values = [
             item.get("name", ""),
@@ -131,9 +124,7 @@ def find_requirement_evidence(
                 evidence=item,
             )
 
-    # ---------------------------------------------------------
     # No verified evidence
-    # ---------------------------------------------------------
     return RequirementMatch(
         requirement=requirement,
         status="unsupported",
@@ -145,15 +136,15 @@ def match_profile_to_job(
     profile: Dict[str, Any],
 ) -> MatchingResult:
     """
-    Match explicit job requirements against verified profile evidence.
+    Match all detected job requirements against verified profile evidence.
     """
 
     result = MatchingResult()
 
-    # ---------------------------------------------------------
-    # Analyze explicit job skills/requirements
-    # ---------------------------------------------------------
-    for requirement in job.skills:
+    # Extract requirements from explicit skills, title, and description.
+    requirements = extract_requirements(job)
+
+    for requirement in requirements:
         match = find_requirement_evidence(
             requirement=requirement,
             profile=profile,
