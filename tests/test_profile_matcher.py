@@ -61,10 +61,11 @@ def test_profile_matcher_identifies_supported_and_unsupported_requirements():
     assert matches_by_name["Docker"].evidence_type is None
 
     # Verify that priority is preserved by the matcher.
-    assert all(
-        match.priority == RequirementPriority.UNKNOWN
-        for match in result.requirement_matches
-    )
+    assert matches_by_name["Docker"].priority == RequirementPriority.PREFERRED
+
+    # Other requirements have no explicit priority in the description.
+    for name in ["Python", "Django", "PostgreSQL", "AWS", "E-commerce"]:
+        assert matches_by_name[name].priority == RequirementPriority.UNKNOWN
 
     # Verify the categorized evidence collections.
     assert len(result.matched_skills) == 3
