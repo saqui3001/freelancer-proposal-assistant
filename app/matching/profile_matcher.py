@@ -2,12 +2,17 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
 from app.jobs.models import JobPost
-from app.requirements.requirement_extractor import extract_requirements
+from app.requirements.priority import RequirementPriority
+from app.requirements.requirement_extractor import (
+    ExtractedRequirement,
+    extract_requirements,
+)
 
 
 @dataclass
 class RequirementMatch:
     requirement: str
+    priority: RequirementPriority
     status: str
     evidence_type: str | None = None
     evidence: Any = None
@@ -33,7 +38,7 @@ def contains_requirement(text: str, requirement: str) -> bool:
 
 
 def find_requirement_evidence(
-    requirement: str,
+    requirement: ExtractedRequirement,
     profile: Dict[str, Any],
 ) -> RequirementMatch:
     """
@@ -48,7 +53,8 @@ def find_requirement_evidence(
     No evidence is inferred when no direct profile match exists.
     """
 
-    normalized_requirement = normalize(requirement)
+    requirement_name = requirement.name
+    normalized_requirement = normalize(requirement_name)
 
     # 1. Skills
     for skill in profile.get("skills", []):
@@ -59,7 +65,8 @@ def find_requirement_evidence(
             and normalize(skill_name) == normalized_requirement
         ):
             return RequirementMatch(
-                requirement=requirement,
+                requirement=requirement_name,
+                priority=requirement.priority,
                 status="supported",
                 evidence_type="skill",
                 evidence=skill,
@@ -74,11 +81,12 @@ def find_requirement_evidence(
         ]
 
         if any(
-            value and contains_requirement(value, requirement)
+            value and contains_requirement(value, requirement_name)
             for value in searchable_values
         ):
             return RequirementMatch(
-                requirement=requirement,
+                requirement=requirement_name,
+                priority=requirement.priority,
                 status="supported",
                 evidence_type="experience",
                 evidence=experience,
@@ -94,11 +102,12 @@ def find_requirement_evidence(
         ]
 
         if any(
-            value and contains_requirement(value, requirement)
+            value and contains_requirement(value, requirement_name)
             for value in searchable_values
         ):
             return RequirementMatch(
-                requirement=requirement,
+                requirement=requirement_name,
+                priority=requirement.priority,
                 status="supported",
                 evidence_type="project",
                 evidence=project,
@@ -114,11 +123,12 @@ def find_requirement_evidence(
         ]
 
         if any(
-            value and contains_requirement(value, requirement)
+            value and contains_requirement(value, requirement_name)
             for value in searchable_values
         ):
             return RequirementMatch(
-                requirement=requirement,
+                requirement=requirement_name,
+                priority=requirement.priority,
                 status="supported",
                 evidence_type="portfolio",
                 evidence=item,
@@ -126,7 +136,8 @@ def find_requirement_evidence(
 
     # No verified evidence
     return RequirementMatch(
-        requirement=requirement,
+        requirement=requirement_name,
+        priority=requirement.priority,
         status="unsupported",
     )
 
@@ -141,7 +152,6 @@ def match_profile_to_job(
 
     result = MatchingResult()
 
-    # Extract requirements from explicit skills, title, and description.
     requirements = extract_requirements(job)
 
     for requirement in requirements:
