@@ -1,7 +1,9 @@
+
 from dataclasses import dataclass
 from typing import List
 
 from app.matching.profile_matcher import RequirementMatch
+from app.requirements.priority import RequirementPriority
 
 
 @dataclass
@@ -12,17 +14,21 @@ class FitAssessment:
     score: float
     level: str
     critical_gaps: List[str]
+    preferred_gaps: List[str]
+    unclassified_gaps: List[str]
+
+
+PRIORITY_WEIGHTS = {
+    RequirementPriority.REQUIRED: 3,
+    RequirementPriority.PREFERRED: 1,
+    RequirementPriority.UNKNOWN: 1,
+}
 
 
 def assess_job_fit(
     requirement_matches: List[RequirementMatch],
 ) -> FitAssessment:
-    """
-    Calculate an initial job-fit assessment from requirement matches.
-
-    This first version treats all requirements equally.
-    Requirement priority will be introduced in a later iteration.
-    """
+    """Calculate weighted job fit and report gaps by requirement priority."""
 
     total = len(requirement_matches)
 
@@ -34,6 +40,8 @@ def assess_job_fit(
             score=0.0,
             level="no requirements",
             critical_gaps=[],
+            preferred_gaps=[],
+            unclassified_gaps=[],
         )
 
     supported = sum(
@@ -41,10 +49,19 @@ def assess_job_fit(
         for match in requirement_matches
         if match.status == "supported"
     )
-
     unsupported = total - supported
 
-    score = (supported / total) * 100
+    total_weight = sum(
+        PRIORITY_WEIGHTS[match.priority]
+        for match in requirement_matches
+    )
+    supported_weight = sum(
+        PRIORITY_WEIGHTS[match.priority]
+        for match in requirement_matches
+        if match.status == "supported"
+    )
+
+    score = (supported_weight / total_weight) * 100
 
     if score >= 80:
         level = "strong match"
@@ -58,7 +75,28 @@ def assess_job_fit(
     critical_gaps = [
         match.requirement
         for match in requirement_matches
-        if match.status == "unsupported"
+        if (
+            match.status == "unsupported"
+            and match.priority == RequirementPriority.REQUIRED
+        )
+    ]
+
+    preferred_gaps = [
+        match.requirement
+        for match in requirement_matches
+        if (
+            match.status == "unsupported"
+            and match.priority == RequirementPriority.PREFERRED
+        )
+    ]
+
+    unclassified_gaps = [
+        match.requirement
+        for match in requirement_matches
+        if (
+            match.status == "unsupported"
+            and match.priority == RequirementPriority.UNKNOWN
+        )
     ]
 
     return FitAssessment(
@@ -68,4 +106,6 @@ def assess_job_fit(
         score=round(score, 2),
         level=level,
         critical_gaps=critical_gaps,
+        preferred_gaps=preferred_gaps,
+        unclassified_gaps=unclassified_gaps,
     )
